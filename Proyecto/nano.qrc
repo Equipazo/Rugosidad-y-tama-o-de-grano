@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/">
+        <file>../../../Escritorio/nano.pgm</file>
+        <file>../../../Imágenes/renio.png</file>
+    </qresource>
+</RCC>

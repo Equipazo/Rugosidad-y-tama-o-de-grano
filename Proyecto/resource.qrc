@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/img">
+        <file>img/nanotec2.jpg</file>
+        <file>img/boro.pgm</file>
+        <file>img/renio1.pgm</file>
+        <file>img/renio2.pgm</file>
+        <file>img/Universo.pgm</file>
+        <file>img/lobo2.pgm</file>
+        <file>img/nano.jpeg</file>
+        <file>img/nano.pgm</file>
+        <file>img/nanotec.png</file>
+    </qresource>
+</RCC>

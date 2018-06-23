@@ -33,4 +33,7 @@ HEADERS += \
 FORMS += \
         interfaz.ui
 
+RESOURCES += \
+    resource.qrc
+
 

@@ -17,23 +17,31 @@ public:
     QString fileName;
     FILE *fichero_1;
     FILE *fichero_2;
-    void invertir();
+    FILE *fichero;
+    FILE *fichero3;
     char nombre_2[60];
+    char nombre[60];
+    char nombre3[60];
+    int  **matriz;
     QPixmap pix();
+    QPixmap pix1();
+    QPixmap pix3();
+    void invertir();
+    void escala();
+    void analisis_matriz();
     interfaz(QWidget *parent = 0);
 
     ~interfaz();
-/*protected:
-    void changeEvent(QEvent *e);*/
+
 private:
     Ui::interfaz *ui;
 
 private slots:
     void on_pushButton_clicked();
-
     void on_pushButton_2_clicked();
-
     void on_pushButton_4_clicked();
+    void on_pushButton_3_clicked();
+    void on_pushButton_5_clicked();
 };
 
 #endif // INTERFAZ_H

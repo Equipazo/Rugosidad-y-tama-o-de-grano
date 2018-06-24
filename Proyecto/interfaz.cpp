@@ -5,6 +5,7 @@
 #include <cstdlib>
 #include <iostream>
 #include<string.h>
+#include<math.h>
 using namespace std;
 
 
@@ -17,6 +18,8 @@ interfaz::interfaz(QWidget *parent) :
     ui->label->setPixmap(pix);
     QPixmap pix2(":/img/img/nanotec2.jpg");
     ui->label_2->setPixmap(pix2);
+    QPixmap pix3(":/img/img/nanotec2.jpg");
+    ui->label_3->setPixmap(pix3);
 }
 
 interfaz::~interfaz()
@@ -107,12 +110,10 @@ void interfaz::invertir()
         QPixmap pix1(nombre_2);
     ui->label_2->setPixmap(pix1);
 }
-
 void interfaz::on_pushButton_4_clicked()
 {
   connect(ui->pushButton_4,SIGNAL(clicked()),qApp,SLOT(quit()));
 }
-
 void interfaz::on_pushButton_5_clicked()
 {
   escala();
@@ -168,7 +169,14 @@ void interfaz::escala(){
         QPixmap pix1(nombre_2);
     ui->label_3->setPixmap(pix1);
 }
-
+void interfaz::on_pushButton_6_clicked()
+{
+system("xdg-open /home/esmeralda/Escritorio/Binaria.txt");
+}
+void interfaz::on_pushButton_7_clicked()
+{
+    system("xdg-open /home/esmeralda/Escritorio/ATSM.jpg");
+}
 void interfaz::on_pushButton_3_clicked()
 {
     analisis_matriz();
@@ -186,6 +194,7 @@ void interfaz::analisis_matriz()
     char datoP[100];
     unsigned int t_po;
     int c,i,j,k;
+    int zeros=0;
     fichero = fopen(nombre, "r" );
     fichero3 = fopen(nombre3, "w" );
 
@@ -211,6 +220,7 @@ void interfaz::analisis_matriz()
             else
             {
               matriz[k][j]=0;
+            zeros++;
             }
 
             if(j<alto){
@@ -231,6 +241,7 @@ void interfaz::analisis_matriz()
             else
             {
               matriz[k][j]=0;
+              zeros++;
             }
              if(j<alto){
              sprintf(datoP,"%d",matriz[k][j]);
@@ -250,13 +261,71 @@ void interfaz::analisis_matriz()
        }
 
     }
+    int z=0;
+    int p=0;
+    float granos=0;
+
+    int x=0,y=0,q=0,w=0,e=0,r=0;
     cout << "Mostrar la matriz" << endl;
-    for (int x=0; x<alto; x++) {
+    for ( x=0; x<alto; x++){
 
-        for (int y=0; y<ancho; y++)
+        for (y=0; y<ancho; y++){
             cout << matriz[y][x] << " ";
-    }
+ p=0;
+        if (matriz[y][x]==0){
 
+            e=x+8; r=y+8;
+            if(e>alto ){e=alto;}
+            if(r>ancho){r=ancho;}
+            for ( q=x; q<e; q++) {
+
+                for ( w=y; w<r; w++){
+                    if(matriz[w][q]==0){
+                        z=1;
+                    }
+                    else{z=0;}
+                    p=p+z;
+
+}}
+            if(p>60){granos++;
+            y=y+8;
+            }
+            else if(p<61){granos=granos+0;}
+        }
+    else{z=0;}
+        }}
+
+granos=granos/4;
+cout<<granos<<endl;
+cout<<zeros<<endl;
+float N, tama;
+N= granos/((alto*ancho)/(25.4*25.4));
+
+tama=(log(N)/log(2))+ 1;
+
+
+//FUNCION TAMAÑO REAL
+int pix;
+QString escala=ui->lineEdit->text();
+switch (escala.toInt()) {
+case 100:
+    pix=60;
+    break;
+case 200:
+    pix=61;
+    break;
+case 50:
+    pix=66;
+    break;
+case 10:
+    pix=39;
+    break;
+}
+
+float area, pixlong, longitud;
+area=zeros/granos;
+pixlong=sqrt(area);
+longitud=(pixlong*escala.toInt())/pix;
 
     if (ferror(fichero))
         puts("I/O error al leer");
@@ -266,4 +335,11 @@ void interfaz::analisis_matriz()
 
     fclose(fichero);
     delete [] matriz;
+    ui->lcdNumber->display(granos);
+    ui->lcdNumber_2->display(tama);
+    ui->lcdNumber_3->display(longitud);
 }
+
+
+
+
